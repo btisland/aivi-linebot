@@ -4,7 +4,7 @@ status: backlog
 created: 2025-12-09T07:51:33Z
 progress: 0%
 prd: .claude/prds/news-push-bot.md
-github: [Will be updated when synced to GitHub]
+github: https://github.com/btisland/aivi-linebot/issues/1
 ---
 
 # Epic: news-push-bot
@@ -576,28 +576,18 @@ def test_real_aivi_website_scraping():
 - 容器化部署（Docker + Kubernetes）
 
 ## Tasks Created
+- [ ] #2 - 專案環境建置與套件管理設定 (parallel: true)
+- [ ] #3 - AIVI 網站爬蟲核心模組實作 (parallel: true)
+- [ ] #4 - AIVI 爬蟲模組單元測試 (parallel: false)
+- [ ] #5 - LINE Bot Webhook 服務建立 (parallel: true)
+- [ ] #6 - 指令處理器與訊息格式化實作 (parallel: false)
+- [ ] #7 - 整合測試與端對端驗證 (parallel: false)
+- [ ] #8 - 文件撰寫與 Hugging Face 部署
+Sync to Hugging Face (parallel: false)
 
-- [ ] 001.md - 專案環境建置與套件管理設定 (parallel: true, size: S, 2h)
-- [ ] 002.md - AIVI 網站爬蟲核心模組實作 (parallel: true, size: M, 4h)
-- [ ] 003.md - AIVI 爬蟲模組單元測試 (parallel: false, size: M, 3h)
-- [ ] 004.md - LINE Bot Webhook 服務建立 (parallel: true, size: M, 3h)
-- [ ] 005.md - 指令處理器與訊息格式化實作 (parallel: false, size: M, 3h)
-- [ ] 006.md - 整合測試與端對端驗證 (parallel: false, size: M, 4h)
-- [ ] 007.md - 文件撰寫與 Hugging Face 部署 (parallel: false, size: M, 3h)
-
-**任務統計**：
-- 總任務數：7
-- 可並行任務：3 個 (001, 002, 004)
-- 循序任務：4 個 (003, 005, 006, 007)
-- 預估總工時：22 小時
-
-**相依關係圖**：
-```
-001 (環境建置) ──┬──→ 002 (爬蟲實作) ──→ 003 (爬蟲測試) ──┐
-                 │                                        ├──→ 005 (指令處理) ──→ 006 (整合測試) ──→ 007 (部署)
-                 └──→ 004 (Webhook) ────────────────────┘
-```
-
+總任務數：       7
+可並行任務：       3
+循序任務：4
 ## 附錄
 
 ### 相關文件
