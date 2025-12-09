@@ -1,0 +1,29 @@
+name: Sync to Hugging Face
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          # 加入 Hugging Face remote（如果不存在）
+          git remote add hf https://huggingface.co/spaces/btisland/aivi-linebot || true
+
+          # 推送到 Hugging Face（使用 token 認證）
+          git push https://btisland:$HF_TOKEN@huggingface.co/spaces/btisland/aivi-linebot main --force
