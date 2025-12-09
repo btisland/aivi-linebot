@@ -11,6 +11,9 @@ from linebot.v3.messaging import Configuration, ApiClient, MessagingApi
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 import os
 import logging
+import asyncio
+
+from src.handlers.command_handler import handle_aivi_command
 
 # 設定日誌
 logging.basicConfig(
@@ -78,16 +81,26 @@ def webhook():
 def handle_message(event):
     """處理文字訊息事件
 
-    目前只記錄收到的訊息，實際指令處理將在 Issue #6 實作。
+    檢查訊息是否為 /aivi 指令，若是則呼叫指令處理器。
+    指令匹配不區分大小寫。
 
     Args:
         event: LINE MessageEvent 物件，包含訊息內容和來源資訊
     """
-    message_text = event.message.text
+    message_text = event.message.text.strip().lower()
     user_id = event.source.user_id
-    logger.info(f"收到來自使用者 {user_id} 的訊息：{message_text}")
-    # 指令處理邏輯將在 Issue #6 實作
-    pass
+    logger.info(f"收到來自使用者 {user_id} 的訊息：{event.message.text}")
+
+    # 檢查是否為 /aivi 指令
+    if message_text == "/aivi":
+        logger.info("偵測到 /aivi 指令，開始處理")
+        # 使用 asyncio 執行非同步指令處理
+        with ApiClient(configuration) as api_client:
+            asyncio.run(handle_aivi_command(event, api_client))
+    else:
+        # 其他訊息不處理
+        logger.debug(f"非指令訊息，不處理: {message_text}")
+        pass
 
 
 if __name__ == "__main__":
