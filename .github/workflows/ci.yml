@@ -28,9 +28,15 @@ jobs:
       run: |
         uv sync --all-extras
 
-    - name: Run fast tests
+    - name: Run tests
       run: |
-        uv run pytest -m "not slow" -v --cov=src --cov-report=term --cov-report=xml
+        if [ "${{ github.event_name }}" == "push" ] && [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "🔍 Running full test suite (including slow tests)"
+          uv run pytest -v --cov=src --cov-report=term --cov-report=xml
+        else
+          echo "⚡ Running fast tests only (excluding slow tests)"
+          uv run pytest -m "not slow" -v --cov=src --cov-report=term --cov-report=xml
+        fi
 
     - name: Upload coverage to Codecov (optional)
       uses: codecov/codecov-action@v3
@@ -46,5 +52,9 @@ jobs:
     - name: Test summary
       if: always()
       run: |
-        echo "✅ CI Tests completed"
+        if [ "${{ github.event_name }}" == "push" ] && [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "✅ Full test suite completed (main branch)"
+        else
+          echo "✅ Fast tests completed (PR)"
+        fi
         echo "📊 Coverage report generated"
