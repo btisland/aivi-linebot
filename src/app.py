@@ -6,6 +6,10 @@ project_root = Path(__file__).parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+# 載入 .env 檔案中的環境變數
+from dotenv import load_dotenv
+load_dotenv()
+
 """LINE Bot Webhook 服務
 
 這是 LINE Bot 的核心入口，負責接收 LINE 平台的事件通知，
