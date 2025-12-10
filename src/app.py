@@ -1,3 +1,11 @@
+import sys
+from pathlib import Path
+
+# 確保可以找到 src 模組（支援直接執行 python src/app.py）
+project_root = Path(__file__).parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 """LINE Bot Webhook 服務
 
 這是 LINE Bot 的核心入口，負責接收 LINE 平台的事件通知，
