@@ -4,6 +4,7 @@ emoji: 📰
 colorFrom: blue
 colorTo: green
 sdk: docker
+sdk_version: "4.44.0"
 pinned: false
 license: mit
 ---
