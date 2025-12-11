@@ -23,7 +23,7 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
           # 加入 Hugging Face remote（如果不存在）
-          git remote add hf https://huggingface.co/spaces/btisland/aivi-linebot || true
+          git remote add hf https://huggingface.co/spaces/josephchou/aivi-linebot || true
 
           # 推送到 Hugging Face（使用 token 認證）
-          git push https://btisland:$HF_TOKEN@huggingface.co/spaces/btisland/aivi-linebot main --force
+          git push https://josephchou:$HF_TOKEN@huggingface.co/spaces/josephchou/aivi-linebot main --force

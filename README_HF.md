@@ -43,7 +43,7 @@ LINE Bot Webhook 服務，部署在 Hugging Face Space。當使用者在 LINE �
 部署完成後，Webhook URL 為：
 
 ```
-https://btisland-aivi-linebot.hf.space/webhook
+https://josephchou-aivi-linebot.hf.space/webhook
 ```
 
 請將此 URL 設定到 LINE Developers Console 的 Webhook URL 欄位。
@@ -54,7 +54,7 @@ https://btisland-aivi-linebot.hf.space/webhook
 2. 選擇您的 Messaging API Channel
 3. 前往「Messaging API」頁面
 4. 找到「Webhook settings」區塊
-5. 點擊「Edit」，輸入：`https://btisland-aivi-linebot.hf.space/webhook`
+5. 點擊「Edit」，輸入：`https://josephchou-aivi-linebot.hf.space/webhook`
 6. 啟用「Use webhook」開關
 7. 點擊「Verify」按鈕，確認 webhook 可正常運作
 
