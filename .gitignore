@@ -51,7 +51,5 @@ Thumbs.db
 # Logs
 *.log
 
-# Claude Code
-.claude/settings.local.json
-.claude/commands/
-.claude/epics/
+# Claude Code PM 系統
+.claude/
