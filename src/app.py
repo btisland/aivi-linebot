@@ -53,6 +53,30 @@ configuration = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN or '')
 handler = WebhookHandler(LINE_CHANNEL_SECRET or '')
 
 
+@app.route("/", methods=['GET'])
+def index():
+    """健康檢查和狀態頁面
+
+    提供服務狀態資訊，用於 Hugging Face Space 和健康檢查。
+
+    Returns:
+        dict: JSON 格式的服務狀態
+    """
+    status = {
+        "status": "running",
+        "service": "AIVI LINE Bot",
+        "description": "LINE Bot Webhook 服務正常運行中",
+        "endpoints": {
+            "webhook": "/webhook (POST)"
+        },
+        "config": {
+            "line_token_set": bool(LINE_CHANNEL_ACCESS_TOKEN),
+            "line_secret_set": bool(LINE_CHANNEL_SECRET)
+        }
+    }
+    return status
+
+
 @app.route("/webhook", methods=['POST'])
 def webhook():
     """LINE Bot webhook endpoint
